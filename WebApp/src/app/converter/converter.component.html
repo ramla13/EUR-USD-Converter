@@ -1,0 +1,57 @@
+<mat-card>
+    <div class="row"></div>
+    <b>Le taux de change actuellement:</b>{{rate}}
+    <div class="row">
+        <p>L'euro vaut {{currencySynchronized | currency:'USD' }} </p>
+      </div>
+ <div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput placeholder="Entrez la devise en euro" [(ngModel)]="currency">
+          </mat-form-field>
+    </div>
+    <div class="col-sm">
+        <button mat-button color="primary"(click) ="convertCurrencyToUSD()">Cliquez ici pour convertir</button>
+    </div>
+    <div class="col-sm">
+        <p *ngIf="currencyConverted>0"> {{currencyConverted | currency:'USD'}}</p>
+    </div>
+  </div>
+</div>
+</mat-card>
+
+<mat-card>
+    <div class="row">
+        <div class="col-sm">
+            <mat-form-field appearance="fill">
+                <mat-label>Choisissez une devise</mat-label>
+            <mat-select [(ngModel)]="currencySelected" (selectionChange)="onChange()">
+                <mat-option *ngFor="let type of currenciesType" [value]="type.name">
+                    {{type.name}}
+                  </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput placeholder="Valeur entrée en {{currencySelected}}" [(ngModel)]="FirstcurrencyValue" (ngModelChange)="calculateCurrency()">
+              </mat-form-field>
+        </div>
+        <div class="col-sm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput [(ngModel)]="SecondtcurrencyValue">
+              </mat-form-field>
+        </div>
+    </div>
+</mat-card>
+
+<mat-card>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput placeholder="Fixez le taux de change" [(ngModel)]="rateInput">
+    </mat-form-field>
+    <button mat-button color="primary"(click) ="fixRate()">Cliquez ici pour fixer le taux</button>
+</mat-card>
+
+
+
